@@ -1,3 +1,5 @@
+import Prism from 'prismjs'
+
 export const RenderBlocks = ({ blocks }) => {
   return blocks.map((block) => {
     const { type, id } = block
@@ -30,6 +32,18 @@ export const RenderBlocks = ({ blocks }) => {
       case 'numbered_list_item':
         return <ListItem key={id} value={value} id={id} />
 
+      case 'code':
+        return(
+        <code
+          dangerouslySetInnerHTML={{
+            __html:  Prism.highlight(
+              block.code.rich_text[0],
+              Prism.languages[block.code.language.toLowerCase()] ||
+                Prism.languages.javascript
+            ),
+          }}
+        />
+        )
       case 'to_do':
         return <ToDo key={id} value={value} />
 
