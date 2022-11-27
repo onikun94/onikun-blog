@@ -45,7 +45,7 @@ type MultiSelectParamType = {
   type:string,
 };
 
-export type Post = {
+export type PostType = {
   archived: boolean;
   cover: null;
   created_by: { id: string; object: string };

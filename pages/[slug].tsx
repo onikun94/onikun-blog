@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { RenderBlocks } from "../components/ContentBlocks";
 import { getNotionData, getPage, getBlocks } from "../lib/getNotionData";
-import { Post } from "../types/notion";
+import { PostType } from "../types/notion";
 
 
 const databaseId = process.env.NOTION_DATABASE_ID;
@@ -20,7 +20,7 @@ export default function Post ({page, blocks}) {
 };
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  const database  = await getNotionData(databaseId) as Post[];
+  const database  = await getNotionData(databaseId) as PostType[];
   return {
     paths: database.map((page) => ({
       params: {
@@ -32,7 +32,7 @@ export const getStaticPaths:GetStaticPaths = async () => {
 };
 export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContext) => {
   const { slug } = context.params;
-  const database = await getNotionData(databaseId) as Post[];
+  const database = await getNotionData(databaseId) as PostType[];
   const filter = database.filter(
     (blog) => blog.properties.Slug.rich_text[0].plain_text === slug
   );
@@ -58,7 +58,7 @@ export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContex
     }
     return block;
   });
-
+  console.log("Blocks = ",blocksWithChildren)
   return {
     props: {
       page,

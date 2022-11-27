@@ -10,10 +10,10 @@ import {
 import { getNotionData } from "../lib/getNotionData";
 import Link from "next/link";
 import { PageObjectResponse, PartialPageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { Post } from "../types/notion";
+import { PostType } from "../types/notion";
 
 type Props = {posts:(PageObjectResponse | PartialPageObjectResponse)[]}
-type NotionPropsType = {posts:Post[]}
+type NotionPropsType = {posts:PostType[]}
 
 const Home: NextPage<NotionPropsType> = ({posts}) => {
   return (
