@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { RenderBlocks } from "../components/ContentBlocks";
 import { getNotionData, getPage, getBlocks } from "../lib/getNotionData";
+import { Post } from "../types/notion";
 
 
 const databaseId = process.env.NOTION_DATABASE_ID;

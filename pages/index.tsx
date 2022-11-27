@@ -10,6 +10,7 @@ import {
 import { getNotionData } from "../lib/getNotionData";
 import Link from "next/link";
 import { PageObjectResponse, PartialPageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { Post } from "../types/notion";
 
 type Props = {posts:(PageObjectResponse | PartialPageObjectResponse)[]}
 type NotionPropsType = {posts:Post[]}
