@@ -8,8 +8,10 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@notionhq/client": "^2.2.2",
+    "@types/prismjs": "^1.26.0",
     "framer-motion": "^7.6.7",
     "next": "^13.0.4",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

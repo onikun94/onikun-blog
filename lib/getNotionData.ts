@@ -4,7 +4,7 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 
-export const getNotionData = async (databaseId) =>{
+export const getNotionData = async (databaseId:string) =>{
   const response = await notion.databases.query({
     database_id:databaseId,
     filter:{

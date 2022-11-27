@@ -4,29 +4,25 @@ import {
   Card,
   CardBody,
   Container,
-  Flex,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { getNotionData } from "../lib/getNotionData";
 import Link from "next/link";
 import { PageObjectResponse, PartialPageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { Post } from "../types/notion";
 
 type Props = {posts:(PageObjectResponse | PartialPageObjectResponse)[]}
+type NotionPropsType = {posts:Post[]}
 
-const Home: NextPage<Props> = ({posts}) => {
-  // posts.map((post)=>{
-  //}
-  //const resultText = post.properties.Slug.rich_text[0].plain_text;
-  console.log("typeof = ",typeof posts[0].object)
-  //console.log("POSTS = ", posts);
+const Home: NextPage<NotionPropsType> = ({posts}) => {
   return (
     <Container marginY="16">
       <Text fontSize="3xl" backgroundColor="white" marginY="4">
         All
       </Text>
       {posts.map((post) => (
-        <Link href={`/${post.properties.Slug.rich_text[0].plain_text}`}>
+        <Link key={post.id} href={`/${post.properties.Slug.rich_text[0].plain_text}`}>
           <Card key={post.id} marginY="2">
             <CardBody>
               <Text fontSize="lg" fontWeight="bold">
