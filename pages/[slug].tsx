@@ -1,26 +1,30 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
+import { Container, Text } from "@chakra-ui/react";
+
 import { RenderBlocks } from "../components/ContentBlocks";
 import { getNotionData, getPage, getBlocks } from "../lib/getNotionData";
 import { PostType } from "../types/notion";
-
+import Link from "next/link";
 
 const databaseId = process.env.NOTION_DATABASE_ID;
 
-export default function Post ({page, blocks}) {
+export default function Post({ page, blocks }) {
   return (
-    <div>
-  <h1 className="mb-5 text-3xl font-bold tracking-tight text-black md:text-5xl">
-        {page.properties.Post.title[0].plain_text}
-      </h1>
-
+    <>
+      <Link href="/">戻る</Link>
+      <Container maxWidth="container.sm">
+        <Text fontSize="3xl" fontWeight="bold" minW="5xl">
+          {page.properties.Post.title[0].plain_text}
+        </Text>
       <RenderBlocks blocks={blocks} />
-    </div>
+      </Container>
+    </>
   );
-};
+}
 
-export const getStaticPaths:GetStaticPaths = async () => {
-  const database  = await getNotionData(databaseId) as PostType[];
+export const getStaticPaths: GetStaticPaths = async () => {
+  const database = (await getNotionData(databaseId)) as PostType[];
   return {
     paths: database.map((page) => ({
       params: {
@@ -30,9 +34,11 @@ export const getStaticPaths:GetStaticPaths = async () => {
     fallback: false,
   };
 };
-export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const { slug } = context.params;
-  const database = await getNotionData(databaseId) as PostType[];
+  const database = (await getNotionData(databaseId)) as PostType[];
   const filter = database.filter(
     (blog) => blog.properties.Slug.rich_text[0].plain_text === slug
   );
@@ -58,7 +64,7 @@ export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContex
     }
     return block;
   });
-  console.log("Blocks = ",blocksWithChildren)
+  console.log("Blocks = ", blocksWithChildren);
   return {
     props: {
       page,
@@ -66,4 +72,3 @@ export const getStaticProps:GetStaticProps = async (context:GetStaticPropsContex
     },
   };
 };
-
