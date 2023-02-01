@@ -13,7 +13,7 @@ export default function Post({ page, blocks }) {
   return (
     <>
       <Link href="/">戻る</Link>
-      <Container maxWidth="container.sm">
+      <Container maxWidth="container.xl">
         <Text fontSize="3xl" fontWeight="bold" minW="5xl">
           {page.properties.Post.title[0].plain_text}
         </Text>
