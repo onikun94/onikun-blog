@@ -1,6 +1,7 @@
 import { GetStaticProps, type NextPage } from "next";
 import {
   Badge,
+  Box,
   Card,
   CardBody,
   Container,
@@ -17,6 +18,8 @@ import {
   PartialPageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { PostType } from "../types/notion";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 type Props = { posts: (PageObjectResponse | PartialPageObjectResponse)[] };
 type NotionPropsType = { posts: PostType[] };
@@ -26,16 +29,7 @@ const Home: NextPage<NotionPropsType> = ({ posts }) => {
   return (
 
       <Container maxWidth="4xl">
-        <IconButton
-          // _focus={{_focus: "none"}} //周りの青いアウトラインが気になる場合に消す方法
-          mb={10}
-          aria-label="DarkMode Switch"
-          icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />} //自分の好みでSunアイコンはreact-iconsを使用しています
-          onClick={toggleColorMode}
-        />
-        <Text fontSize="4xl" fontWeight="bold" marginY="4">
-          人生九蓮宝燈.com
-        </Text>
+        <Header/>
         {posts.map((post) => (
           <Link
             key={post.id}
@@ -60,6 +54,7 @@ const Home: NextPage<NotionPropsType> = ({ posts }) => {
             </Card>
           </Link>
         ))}
+        <Footer/>
       </Container>
   );
 };
