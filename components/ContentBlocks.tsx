@@ -1,8 +1,7 @@
-import Prism, { languages } from "prismjs";
 import { Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import {Code} from "./Code"
+import Code from "./Code"
 import { useRouter } from "next/router";
 
 export const RenderBlocks = ({ blocks }) => {
@@ -55,9 +54,9 @@ useEffect(() => {
 
       case "code":
         const code = value.rich_text[0]?.plain_text || ""
-        console.log(value.language)
+        console.log("CODE = ",code)
         return (
-          <Code  language={value.language}>
+          <Code key={id}  language={value.language}>
             {code}
           </Code>
         );
@@ -169,7 +168,7 @@ const Heading = ({ text, level }) => {
         //<h1 className="my-2 text-3xl font-bold tracking-tight text-black md:text-5xl">
         //  <SpanText text={text} />
         //</h1>
-        <Text fontSize="3xl" fontWeight="bold" marginY="2" minWidth="5xl">
+        <Text fontSize="3xl" fontWeight="bold" marginY="2">
           <SpanText text={text} />
         </Text>
       );
@@ -178,7 +177,7 @@ const Heading = ({ text, level }) => {
         //<h2 className="my-2 text-2xl font-bold tracking-tight text-black md:text-3xl">
         //  <SpanText text={text} />
         //</h2>
-        <Text fontSize="2xl" fontWeight="bold" marginY="2" minWidth="3xl">
+        <Text fontSize="2xl" fontWeight="bold" marginY="2" >
           <SpanText text={text} />
         </Text>
       );
@@ -187,7 +186,7 @@ const Heading = ({ text, level }) => {
         // <h3 className="my-2 text-lg font-bold tracking-tight text-black md:text-xl">
         //   <SpanText text={text} />
         // </h3>
-        <Text fontSize="large" fontWeight="bold" marginY="2" minWidth="xl">
+        <Text fontSize="large" fontWeight="bold" marginY="2" >
           <SpanText text={text} />
         </Text>
       );
