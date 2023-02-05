@@ -12,13 +12,10 @@ const databaseId = process.env.NOTION_DATABASE_ID;
 export default function Post({ page, blocks }) {
   return (
     <>
-      <Link href="/">戻る</Link>
-      <Container maxWidth="container.xl">
-        <Text fontSize="3xl" fontWeight="bold" minW="5xl">
+        <Text fontSize="4xl" fontWeight="bold" textAlign="center">
           {page.properties.Post.title[0].plain_text}
         </Text>
       <RenderBlocks blocks={blocks} />
-      </Container>
     </>
   );
 }
