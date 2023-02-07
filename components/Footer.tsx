@@ -5,7 +5,7 @@ const Footer:React.FC = () => {
   return (
     <Box  bottom="0" py="16" textAlign="center">
       <Text fontSize="xs" fontWeight="thin">
-          © Copyright 2022 by onikun94.
+          © Copyright 2023 by onikun94.
       </Text>
     </Box>
   )
