@@ -7,21 +7,18 @@
       "prismjs",
       {
         "languages": [
-          "typescript",
           "javascript",
-          "css",
           "html",
           "bash",
-          "yaml",
           "jsx",
-          "tsx",
           "json"
+      
         ],
         "plugins": [
           "line-numbers",
           "show-language"
         ],
-        "theme": "dark",
+        "theme": "okaidia",
         "css": true
       }
     ]
