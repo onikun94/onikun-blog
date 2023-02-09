@@ -1,17 +1,17 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
-import { Container, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 import { RenderBlocks } from "../components/ContentBlocks";
 import { getNotionData, getPage, getBlocks } from "../lib/getNotionData";
 import { PostType } from "../types/notion";
-import Link from "next/link";
 
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Post({ page, blocks }) {
   return (
     <>
+        <Text>{page.properties.Date.date.start}</Text>
         <Text fontSize="4xl" fontWeight="bold" textAlign="center">
           {page.properties.Post.title[0].plain_text}
         </Text>
