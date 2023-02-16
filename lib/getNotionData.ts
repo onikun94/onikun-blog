@@ -28,14 +28,14 @@ export const getNotionData = async (databaseId:string) =>{
   return response.results
 }
 
-export const getPage = async (pageId) => {
+export const getPage = async (pageId:string) => {
   const response = await notion.pages.retrieve({ page_id: pageId })
   return response
 }
 
-export const getBlocks = async (blockId) => {
+export const getBlocks = async (blockId:string) => {
   const blocks = []
-  let cursor
+  let cursor:string
   while (true){
     const {results, next_cursor} = await notion.blocks.children.list({
       start_cursor: cursor,
