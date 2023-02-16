@@ -67,3 +67,4 @@ export type PostType = {
   url:string,
 };
 
+export type NotionPropsType = { posts: PostType[] };
