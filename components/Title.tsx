@@ -1,8 +1,10 @@
 import { Badge, Card, CardBody, Stack, Text } from '@chakra-ui/react'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import React from 'react'
+import { NotionPropsType } from '../pages'
 
-const Title = ({posts}) => {
+const Title:NextPage<NotionPropsType> = ({posts}) => {
   return (
     <>
       {posts.map((post) => (
