@@ -14,7 +14,7 @@ import React from "react";
 const Header: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Box py="16">
+    <Box py="8">
       <Flex
         as="header"
         py="2"
