@@ -1,28 +1,32 @@
-import { Text } from "@chakra-ui/react";
+import { Image, Link, Text } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-import Code from "./Code"
+import Code from "./Code";
 import { useRouter } from "next/router";
 
 export const RenderBlocks = ({ blocks }) => {
 
-//for hydration error 
-const router = useRouter();
-const [loading, setLoading] = useState<boolean>(true);
+  //for hydration error
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(true);
 
-useEffect(() => {
-  if (router.isReady) {
-    setLoading(false);
-  }
-}, [router.isReady]);
+  useEffect(() => {
+    if (router.isReady) {
+      setLoading(false);
+    }
+  }, [router.isReady]);
 
   return blocks.map((block) => {
     const { type, id } = block;
     const value = block[type];
+    //    console.log("BLOCK = ", block)
+    //    console.log("TYPE = ",type)
+    //    console.log("VALUE = ",value)
 
     //for hydration
-    if(loading){
-      return <div>Loading</div>
+    if (loading) {
+      return <div>Loading</div>;
     }
 
     switch (type) {
@@ -53,40 +57,12 @@ useEffect(() => {
         return <ListItem key={id} value={value} id={id} />;
 
       case "code":
-        const code = value.rich_text[0]?.plain_text || ""
-        console.log("CODE = ",code)
+        const code = value.rich_text[0]?.plain_text || "";
         return (
-          <Code key={id}  language={value.language}>
+          <Code key={id} language={value.language}>
             {code}
           </Code>
         );
-      // useEffect(() => {
-      //   console.log("Prism is called");
-      //   console.log(typeof value.language);
-      //   Prism.highlightAll();
-      // }, []);
-      // console.log("Prism Content = ", block.code.rich_text[0]);
-      // console.log(
-      //   "Prism Content language = ",
-      //   languages[block.code.language.toLowerCase()]
-      // );
-      // return (
-      //   <>
-      //     <pre>
-      //       <code
-      //         className={`language-${value.language}`}
-      //         dangerouslySetInnerHTML={{
-      //           __html: Prism.highlight(
-      //             block.code.rich_text[0].plain_text || "",
-      //             Prism.languages[value.language] ||
-      //               Prism.languages["markdown"],
-      //             value.language
-      //           ),
-      //         }}
-      //       >{block.code.rich_text[0].plain_text}</code>
-      //     </pre>
-      //   </>
-      // );
       case "to_do":
         return <ToDo key={id} value={value} />;
 
@@ -100,7 +76,7 @@ useEffect(() => {
         return (
           <figure key={id}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt={caption} src={imageSrc} />
+            <Image alt={caption} src={imageSrc} borderRadius="lg" my="2"  />
             {caption && <figcaption className="mt-2">{caption}</figcaption>}
           </figure>
         );
@@ -121,35 +97,47 @@ const SpanText = ({ text, id }) => {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
     } = value;
+    console.log(bold, code, color, italic, strikethrough, underline);
     return (
-      <span
+      <Text
         key={id + i}
-        className={[
-          bold ? "font-bold" : "",
-          code ? "bg-gray-100 p-1 font-mono text-sm rounded-md" : "",
-          italic ? "italic" : "",
-          strikethrough ? "line-through" : "",
-          underline ? "underline" : "",
-        ].join(" ")}
+        display="inline"
+        fontWeight={bold ? "bold" : ""}
+        fontFamily={code ? "mono" : ""}
+        fontStyle={italic ? "italic" : ""}
+        bgColor={code ? "gray.100" : ""}
+        fontSize={code ? "sm" : ""}
+        rounded={code ? "md" : ""}
+        textDecoration={
+          strikethrough ? "line-through" : underline ? "underline" : ""
+        }
+        lineHeight="2"
         style={color !== "default" ? { color } : {}}
       >
         {text.link ? (
-          <a href={text.link.url} className="underline">
+          <Link
+            href={text.link.url}
+            className="underline"
+            color="blue.600"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {text.content}
-          </a>
+          </Link>
         ) : (
           text.content
         )}
-      </span>
+      </Text>
     );
   });
 };
 
 const ParaText = ({ text, id }) => {
+  const textColor = useColorModeValue("gray.700","white")
   return (
-    <p className="mb-4 text-gray-700">
+    <Text color={textColor}>
       <SpanText text={text} id={id} />
-    </p>
+    </Text>
   );
 };
 
@@ -177,7 +165,7 @@ const Heading = ({ text, level }) => {
         //<h2 className="my-2 text-2xl font-bold tracking-tight text-black md:text-3xl">
         //  <SpanText text={text} />
         //</h2>
-        <Text fontSize="2xl" fontWeight="bold" marginY="2" >
+        <Text fontSize="2xl" fontWeight="bold" marginY="2">
           <SpanText text={text} />
         </Text>
       );
@@ -186,7 +174,7 @@ const Heading = ({ text, level }) => {
         // <h3 className="my-2 text-lg font-bold tracking-tight text-black md:text-xl">
         //   <SpanText text={text} />
         // </h3>
-        <Text fontSize="large" fontWeight="bold" marginY="2" >
+        <Text fontSize="large" fontWeight="bold" marginY="2">
           <SpanText text={text} />
         </Text>
       );
