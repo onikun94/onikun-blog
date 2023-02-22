@@ -11,10 +11,10 @@ const databaseId = process.env.NOTION_DATABASE_ID;
 export default function Post({ page, blocks }) {
   return (
     <>
-        <Text>{page.properties.Date.date.start}</Text>
-        <Text fontSize="4xl" fontWeight="bold" textAlign="center">
-          {page.properties.Post.title[0].plain_text}
-        </Text>
+      <Text>{page.properties.Date.date.start}</Text>
+      <Text fontSize="4xl" mb="8" fontWeight="bold" textAlign="center">
+        {page.properties.Slug.rich_text[0].plain_text}
+      </Text>
       <RenderBlocks blocks={blocks} />
     </>
   );
