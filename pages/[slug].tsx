@@ -12,7 +12,7 @@ export default function Post({ page, blocks }) {
   return (
     <>
       <Text>{page.properties.Date.date.start}</Text>
-      <Text fontSize="4xl" mb="8" fontWeight="bold" textAlign="center">
+      <Text fontSize="4xl" mb="8" pb="4" fontWeight="bold" textAlign="center" borderBottom="1px" borderBottomColor="gray.300">
         {page.properties.Slug.rich_text[0].plain_text}
       </Text>
       <RenderBlocks blocks={blocks} />
