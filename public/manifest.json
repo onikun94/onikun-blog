@@ -3,7 +3,7 @@
     "background_color": "#f69435",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "https://onikun-blog.vercel.app/",
     "name": "Taiyo Yamaguchi",
     "short_name": "taiyo",
     "icons": [

@@ -1,4 +1,3 @@
-//module.exports = withPWA()
 const withPWA = require("next-pwa");
 
 module.exports = withPWA({
