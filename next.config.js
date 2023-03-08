@@ -1,9 +1,15 @@
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  dynamicStartUrl: true, // this is same as default value
-})
+//module.exports = withPWA()
+const withPWA = require("next-pwa");
 
-module.exports = withPWA()
+module.exports = withPWA({
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+　　disable: process.env.NODE_ENV === "development",
+  },
+  reactStrinctMode: true,
+});
 
 module.exports = {
   typescript: {
