@@ -3012,9 +3012,9 @@ form-data@^3.0.0:
     mime-types "^2.1.12"
 
 framer-motion@^10.0.0:
-  version "10.12.21"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.12.21.tgz#ea36b8db4dbb561d5fac7a978c2cd467f6d39a1b"
-  integrity sha512-EmnP73O5+1OGm2jtQNoBPPuAJvhySl+p4/9PL7PPJHt58nkPWeFaxhCJaUDXDf6N3jSLluefxopc0FrMCQ+/tQ==
+  version "10.13.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.13.2.tgz#d2b1d5a33e9b81cb815d9281252d450d9a7794cf"
+  integrity sha512-qrHQ7b5t8IxQziCN3pIsG8EhXrhPEK2uY7lLpYwzsh+p7L1nthc7zauM67kwD8g9vzS/Ul+NmfZe3luyOHX8CQ==
   dependencies:
     tslib "^2.4.0"
   optionalDependencies:
